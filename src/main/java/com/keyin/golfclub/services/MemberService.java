@@ -5,6 +5,7 @@ import com.keyin.golfclub.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +47,10 @@ public class MemberService {
 
     // Search by start date (string version, assuming LocalDate conversion later)
     public List<Member> searchByStartDate(String date) {
-        return memberRepository.findByStartDate(date);
+        LocalDate parsedDate = LocalDate.parse(date);
+        return memberRepository.findByStartDate(parsedDate);
     }
+
 
     // Search by membership duration
     public List<Member> searchByDuration(int months) {
